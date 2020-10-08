@@ -1,0 +1,6 @@
+git branch -M nombre_rama
+git checkout nombre_rama
+git status
+git add .
+git commit -m "tu comentario"
+git push origin nombre_rama
