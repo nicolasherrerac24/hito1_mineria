@@ -3,9 +3,26 @@ title: "R Notebook"
 output: html_notebook
 ---
 
-**IMPORTAR DATA
+**Librerías
+```{r}
+library(dplyr)
+library(lubridate)
+```
+
+
+**Importar base de datos
 ```{r}
 covid19_tweets <- read.csv("~/GitHub/hito1_mineria/data/covid19_tweets.csv", comment.char="#")
 head(covid19_tweets)
 
+columnas <- ncol(covid19_tweets)
+filas <- nrow(covid19_tweets)
+
 ```
+
+**Análisis descriptivo
+```{r}
+locaciones <- covid19_tweets %>%  filter(year(as.Date(date))>2018) %>% group_by(user_location) %>% summarise(Cantidad = n())
+View(locaciones)
+```
+

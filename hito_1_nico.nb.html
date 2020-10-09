@@ -1749,23 +1749,52 @@ summary {
 
 
 <!-- rnb-text-begin -->
-<p>**IMPORTAR DATA</p>
+<p>**Librerías</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY292aWQxOV90d2VldHMgPC0gcmVhZC5jc3YoXCJ+L0dpdEh1Yi9oaXRvMV9taW5lcmlhL2RhdGEvY292aWQxOV90d2VldHMuY3N2XCIsIGNvbW1lbnQuY2hhcj1cIiNcIilcbmhlYWQoY292aWQxOV90d2VldHMpXG5gYGAifQ== -->
-<pre class="r"><code>covid19_tweets &lt;- read.csv(&quot;~/GitHub/hito1_mineria/data/covid19_tweets.csv&quot;, comment.char=&quot;#&quot;)
-head(covid19_tweets)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShsdWJyaWRhdGUpXG5cbmBgYCJ9 -->
+<pre class="r"><code>library(lubridate)
+</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MTMsIm5yb3ciOjZ9LCJyZGYiOiJINHNJQUFBQUFBQUFCbjFXUVc4YlJSUjIweVJRMDlCQ0VlZUhnaHFRYkhkM0c5dUpUMG1hcEVsS0U1T0V0cUdxcXNudTJEdks3bzZabVUzaW5FSlJoVUJWSXpnZ2lvUnlBaTRJVlJWSUthM1NQMUFWOThBUGFJOWN5QzhvdkZudm1zVEJsVDJ6czk5NzgrWjdiK2E5bmZueEsyZlRWOUtwVk9wb3FsdjNQZGlsZXMrVlRTdHZwVkxkWGZoMkJDWEg5SE1kNWFkdzBJZnRwRmJEcGdVbm4yMTk4ZXoyRDgrL2ZmRG56My9kdVBuSEx6RithcEg3TUVZazh5anNiWC8rTzdhZDJOYUpSZWJUd1FxVGl0bGhwU0pqK0RXcVhPcUJUNFhhaUtGWHg2Zkw4OW1aMHhjU28zdmJ0Ky9EcENEQkJpellicmlNdWkwK3pTbHBJcFhnYTF4NFRvd2NuNlZyc01URlNnWm1sMkxzWkptdVVRcVhpT2ZSZWdZdUpQaGJDeXEwVjRBRmdGemdJbk1jcEIvTDNwZ2h2aDhDQ1J5NFFLVHJNeEd6ZXJ2eGZXTzNjYSt4KzNTenNmdjQwNmY0YSt3ODNXb0wxTm9hZFFJcUhWSUg0ampFbDBEd0R3NlRBYTFEVGJEQXBsTENDcVUxWEo0cHVQcjQzdU9iNytydVBkMDl1Zi9rMFpOSGV2UitTM0FOUS92Vnp0NzIxb085N2ErL2UzN255NzkzdHZhMmY5cmMyNzcxRzdiUHNOMkoyZCtaQ3VVeWNzL0FKRUhmUkFiT2NTLzBBOXdGT0kxajM2ZUJJb3FMSEl5R3l1VUNlQVVXZVZoMVlZRjZYZ2ttV2RWVkxLZzJJME1kUnVBeUVUcFUwNEo4a29PeFVMb3c2dmdJaktMaEhHRFlwVS9XMFhhZ0JGc09JOXVUdm9DSmRXckRPQk80SFF2bjU4b3h3VlRyMll3WDI5ditSdnN6VjZrd214RVBGdGVZVWxTQWkxN2dyaUM5Y1ZvalFtbmkrbTA2cUhEaEU4VjRFRzFTT1Z6Mm1BM3oxSXN3bVlIemZEWFNiRzdrNmJadDVIaTRIZ0wwLy85dVF2OHNYK1dDUzhucUJKVjJVWENqY1JjVjd6YnU0M2lyOFN0T2U5aTRDLzBMaTZOTFJFM05YWnlBTXZmcVNNbk5nTTM5R3BjNjdoTkIxV1BTemJVZDNGT1dZUmF6Umo1ckZjRElsd1lMcFVIclA1RXhuRFVHczJZQkxLTmtGRXJXMlVOUk8yREZ5cG9Xb041Z3ZtVG05NG1Hc3NiWnJEa01KcG9ZTHVrc1A4RGhhTUVhaklmZGxwWHZ0RWl2YVpqSUtORTB6U0dqM2RCdzNtaUpDOFZpQjBOSHpjSlFTODBvbW0xV2VzeWhZakdoMzlXaWR0aUtZYmFzV0VQRmRpdVR4Sk0wVVZnVUllMWc1NEJpL0hKb2p5d2pheFN6Vmg1TXEyUVZTNWJaVVdSMjh2cXdxakhVV1ZSb3F5TzNwL0dvZy9ReEtha1RKYU8wNHd6UW1RR1NCRXl4RFNva0tLNnJEYWFENUQ3bEFVM3FXZzFyWkFhTnJQSFEweVpZc0tMeE9xeFJnZVk0NmltK3pteWlvaFdJZXI3NUk3aEsxV1RwekJtVnMvbVpEejllWFZvV2M5VmxJMkUxaGROSGxraUE5VXUyQnVYNUtCTkhMbjR3QnRubWNzR0Ewc1hOSmFzVWZPSmd4L1dhTkpBVStUYnhpS05INnRxSEducUE3MWd0QkpVMWFpdnRWcVF4ZW9pVitlSHFaV09qV2krSEhXcktMUXpyVE9qVm9SUlhzTEVRbzRoVlRRY0o4eHMvUC8zbk1Na0Rjb21KVUg1VWN6QUVFckc1UzlQam1EYnBrUlVTU09JSjdqSlZHSWFSY2JGUXA4NENkUVZtTkl3UUpnS3Nlc1REN3hKR1lYUjIraERIaTdQR3hJUXRaNmJjZmR6Mm43SDIwOUwrZk9mcXdHR0tBeGtZaUVrT1hPdGcrTTJrZ0dLWkJGWjI4VUFrcDI2L1pEUndCR2RPcDdQN010V1g1TjJCbDVjbVhxcnQ1dEVURUovSzJIWmZEQjRMc1pSZTE1SVk2SXNBajl0UnJVKys4aEhvVUdrTFZ0dUhINDl3VzFCOXdHUHM5UWlyY00vam1BWHlnR1pGTUJvNENYYWlpWkZWSGdxR3NUL0FZSlVLVm1FdHE5MTZkNUt4b3VzcXVkaTQrT2xScEpwTTdwVm96RTQwMDB4ZUYxVGhEVVcxQmVNWVhtMXlTVUQwVmF4cnN4bXkzdmFvMlI2UlNkUVNNSTFzU0s0aWROaFNxUmR0VTE3aFVZeHdVcGUrNlBXMFRUNGkyb0FUWWFDWk9GbThpQVVyV1YyODA1RzQyZnJpWisrK2NWOXp5YTUvWWxNOWlmczBxTExXY2V6eHlETDFrbjFCanlPSGMvcUtsTVF2amFqTUthNUlvcGUydVpjZ2tXK3BGLzhDbzBOSDJ1QUtBQUE9In0= -->
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["user_name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["user_location"],"name":[2],"type":["chr"],"align":["left"]},{"label":["user_description"],"name":[3],"type":["chr"],"align":["left"]},{"label":["user_created"],"name":[4],"type":["chr"],"align":["left"]},{"label":["user_followers"],"name":[5],"type":["chr"],"align":["left"]},{"label":["user_friends"],"name":[6],"type":["chr"],"align":["left"]},{"label":["user_favourites"],"name":[7],"type":["chr"],"align":["left"]},{"label":["user_verified"],"name":[8],"type":["chr"],"align":["left"]},{"label":["date"],"name":[9],"type":["chr"],"align":["left"]},{"label":["text"],"name":[10],"type":["chr"],"align":["left"]},{"label":["hashtags"],"name":[11],"type":["chr"],"align":["left"]},{"label":["source"],"name":[12],"type":["chr"],"align":["left"]},{"label":["is_retweet"],"name":[13],"type":["chr"],"align":["left"]}],"data":[{"1":"á\\217‰áŽ¥â\\230»Õ¬ê‚…Ï®","2":"astroworld","3":"wednesday addams as a disney princess keepin it [Ì²Ì…$Ì²Ì…(Ì²Ì…Î¹Î¿Î¿Ì²Ì…)Ì²Ì…$Ì²Ì…] ðŸ‘¸ðŸ\\217»ðŸ’šâ\\231Šï¸\\217ðŸ§\\200ðŸŒµðŸŒƒðŸŒ\\231","4":"2017-05-26 05:46:42","5":"624","6":"950","7":"18775","8":"False","9":"2020-07-25 12:27:21","10":"If I smelled the scent of hand sanitizers today on someone in the past, I would think they were so intoxicated thatâ\\200¦ https://t.co/QZvYbrOgb0","11":"","12":"Twitter for iPhone","13":"False","_rn_":"1"},{"1":"Tom Basile ðŸ‡ºðŸ‡¸","2":"New York, NY","3":"Husband, Father, Columnist & Commentator. Author of Tough Sell: Fighting the Media War in Iraq. Bush Admin Alum. Newsmax Contributor. Fmr Exec Dir NYSGOP","4":"2009-04-16 20:06:23","5":"2253","6":"1677","7":"24","8":"True","9":"2020-07-25 12:27:17","10":"Hey @Yankees @YankeesPR and @MLB - wouldn't it have made more sense to have the players pay their respects to the Aâ\\200¦ https://t.co/1QvW0zgyPu","11":"","12":"Twitter for Android","13":"False","_rn_":"2"},{"1":"Time4fisticuffs","2":"Pewee Valley, KY","3":"","4":"","5":"","6":"","7":"","8":"","9":"","10":"","11":"","12":"","13":"","_rn_":"3"},{"1":"ethel mertz","2":"Stuck in the Middle","3":"","4":"","5":"","6":"","7":"","8":"","9":"","10":"","11":"","12":"","13":"","_rn_":"4"},{"1":"DIPR-J&K","2":"Jammu and Kashmir","3":"ðŸ–Šï¸\\217Official Twitter handle of Department of Information and Public Relations, Govt of Jammu & Kashmir","4":"2017-02-12 06:45:15","5":"101009","6":"168","7":"101","8":"False","9":"2020-07-25 12:27:08","10":"25 July : Media Bulletin on Novel #CoronaVirusUpdates #COVID19 \\n@kansalrohit69 @DrSyedSehrish @airnewsalerts @ANIâ\\200¦ https://t.co/MN0EEcsJHh","11":"['CoronaVirusUpdates', 'COVID19']","12":"Twitter for Android","13":"False","_rn_":"5"},{"1":"ðŸŽ¹ Franz Schubert","2":"Ð\\235Ð¾Ð²Ð¾Ñ\\200Ð¾Ì\\201Ñ\\201Ñ\\201Ð¸Ñ\\217","3":"ðŸŽ¼  #Ð\\235Ð¾Ð²Ð¾Ñ\\200Ð¾Ì\\201Ñ\\201Ñ\\201Ð¸Ñ\\217 #Novorossiya #Ð¾Ñ\\201Ñ‚Ð°Ð²Ð°Ð¹Ñ\\201Ñ\\217Ð´Ð¾Ð¼Ð° #STAYatHOME Polymath, composer, English.","4":"2018-03-19 16:29:52","5":"1180","6":"1071","7":"1287","8":"False","9":"2020-07-25 12:27:06","10":"","11":"","12":"","13":"","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10],"total":[13]},"rows":{"min":[10],"max":[10],"total":[6]},"pages":{}}}
-  </script>
-</div>
-<!-- rnb-frame-end -->
-<!-- rnb-chunk-end -->
+<!-- rnb-output-begin eyJkYXRhIjoicGFja2FnZSDjpLzjuLFsdWJyaWRhdGXjpLzjuLIgd2FzIGJ1aWx0IHVuZGVyIFIgdmVyc2lvbiA0LjAuMlxuQXR0YWNoaW5nIHBhY2thZ2U6IOOkvOO4sWx1YnJpZGF0ZeOkvOO4slxuXG5UaGUgZm9sbG93aW5nIG9iamVjdHMgYXJlIG1hc2tlZCBmcm9tIOOkvOO4sXBhY2thZ2U6ZHBseXLjpLzjuLI6XG5cbiAgICBpbnRlcnNlY3QsIHNldGRpZmYsIHVuaW9uXG5cblRoZSBmb2xsb3dpbmcgb2JqZWN0cyBhcmUgbWFza2VkIGZyb20g46S847ixcGFja2FnZTpiYXNl46S847iyOlxuXG4gICAgZGF0ZSwgaW50ZXJzZWN0LCBzZXRkaWZmLCB1bmlvblxuIn0= -->
+<pre><code>package 㤼㸱lubridate㤼㸲 was built under R version 4.0.2
+Attaching package: 㤼㸱lubridate㤼㸲
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQoqKklNUE9SVEFSIERBVEENCmBgYHtyfQ0KY292aWQxOV90d2VldHMgPC0gcmVhZC5jc3YoIn4vR2l0SHViL2hpdG8xX21pbmVyaWEvZGF0YS9jb3ZpZDE5X3R3ZWV0cy5jc3YiLCBjb21tZW50LmNoYXI9IiMiKQ0KaGVhZChjb3ZpZDE5X3R3ZWV0cykNCg0KYGBg</div>
+The following objects are masked from 㤼㸱package:dplyr㤼㸲:
+
+    intersect, setdiff, union
+
+The following objects are masked from 㤼㸱package:base㤼㸲:
+
+    date, intersect, setdiff, union</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>**Importar base de datos</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY292aWQxOV90d2VldHMgPC0gcmVhZC5jc3YoXCJ+L0dpdEh1Yi9oaXRvMV9taW5lcmlhL2RhdGEvY292aWQxOV90d2VldHMuY3N2XCIsIGNvbW1lbnQuY2hhcj1cIiNcIilcbmhlYWQoY292aWQxOV90d2VldHMpXG5cbmNvbHVtbmFzIDwtIG5jb2woY292aWQxOV90d2VldHMpXG5maWxhcyA8LSBucm93KGNvdmlkMTlfdHdlZXRzKVxuXG5gYGAifQ== -->
+<pre class="r"><code>covid19_tweets &lt;- read.csv(&quot;~/GitHub/hito1_mineria/data/covid19_tweets.csv&quot;, comment.char=&quot;#&quot;)
+head(covid19_tweets)
+
+columnas &lt;- ncol(covid19_tweets)
+filas &lt;- nrow(covid19_tweets)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>**Análisis descriptivo</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubG9jYWNpb25lcyA8LSBjb3ZpZDE5X3R3ZWV0cyAlPiUgIGZpbHRlcih5ZWFyKGFzLkRhdGUoZGF0ZSkpPjIwMTgpICU+JSBncm91cF9ieSh1c2VyX2xvY2F0aW9uKSAlPiUgc3VtbWFyaXNlKENhbnRpZGFkID0gbigpKVxuVmlldyhsb2NhY2lvbmVzKVxuYGBgIn0= -->
+<pre class="r"><code>locaciones &lt;- covid19_tweets %&gt;%  filter(year(as.Date(date))&gt;2018) %&gt;% group_by(user_location) %&gt;% summarise(Cantidad = n())
+View(locaciones)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQoqKkxpYnJlcsOtYXMNCmBgYHtyfQ0KbGlicmFyeShkcGx5cikNCmxpYnJhcnkobHVicmlkYXRlKQ0KYGBgDQoNCg0KKipJbXBvcnRhciBiYXNlIGRlIGRhdG9zDQpgYGB7cn0NCmNvdmlkMTlfdHdlZXRzIDwtIHJlYWQuY3N2KCJ+L0dpdEh1Yi9oaXRvMV9taW5lcmlhL2RhdGEvY292aWQxOV90d2VldHMuY3N2IiwgY29tbWVudC5jaGFyPSIjIikNCmhlYWQoY292aWQxOV90d2VldHMpDQoNCmNvbHVtbmFzIDwtIG5jb2woY292aWQxOV90d2VldHMpDQpmaWxhcyA8LSBucm93KGNvdmlkMTlfdHdlZXRzKQ0KDQpgYGANCg0KKipBbsOhbGlzaXMgZGVzY3JpcHRpdm8NCmBgYHtyfQ0KbG9jYWNpb25lcyA8LSBjb3ZpZDE5X3R3ZWV0cyAlPiUgIGZpbHRlcih5ZWFyKGFzLkRhdGUoZGF0ZSkpPjIwMTgpICU+JSBncm91cF9ieSh1c2VyX2xvY2F0aW9uKSAlPiUgc3VtbWFyaXNlKENhbnRpZGFkID0gbigpKQ0KVmlldyhsb2NhY2lvbmVzKQ0KYGBgDQoNCg==</div>
 
 
 
