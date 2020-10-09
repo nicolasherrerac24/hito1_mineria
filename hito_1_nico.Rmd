@@ -3,4 +3,9 @@ title: "R Notebook"
 output: html_notebook
 ---
 
-HOOOOOOOLAaaaaaaaaaaaaaAAAAAAAA FUNCIONAAAA
+**IMPORTAR DATA
+```{r}
+covid19_tweets <- read.csv("~/GitHub/hito1_mineria/data/covid19_tweets.csv", comment.char="#")
+head(covid19_tweets)
+
+```
