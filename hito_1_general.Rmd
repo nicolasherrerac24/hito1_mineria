@@ -1,0 +1,126 @@
+---
+title: "R Notebook"
+output:
+  html_document:
+    df_print: paged
+---
+
+**Introducción
+
+
+```{r}
+library(ggplot2)
+library(dplyr)
+library(tidyverse)
+library(tidytext)
+```
+
+```{r}
+train  <- read.csv("data/Corona_NLP_train.csv", encoding="Latin-1")
+test <- read.csv("data/Corona_NLP_test.csv", encoding="Latin-1")
+df <- rbind(train,test)
+```
+
+```{r}
+head(df)
+```
+
+```{r}
+df$TweetAt <- as.Date(df$TweetAt, format="%d-%m-%y")
+df$OriginalTweet <- as.character(df$OriginalTweet)
+```
+
+```{r}
+str(df)
+summary(df$TweetAt)
+```
+
+```{r}
+ggplot(data=df, aes(x=TweetAt)) + geom_histogram(position="identity", bins=30) + theme_bw()
+```
+```{r}
+tweets_mes_dia <- df %>% mutate(mes_dia = format(TweetAt, "%m-%d"))
+tweets_mes_dia %>% group_by(Sentiment, mes_dia) %>% summarise(n = n()) %>%
+  ggplot(aes(x = mes_dia, y = n, color = Sentiment)) +
+  geom_line(aes(group = Sentiment)) +
+  labs(title = "Número de tweets publicados", x = "fecha de publicación",
+       y = "número de tweets") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90, size = 6),
+        legend.position = "bottom")
+```
+
+```{r}
+# library(tidyverse)
+#tweets_sentiment <- df %>% group_by(Sentiment) %>% summarise(n = n())
+df %>% ggplot(aes(x = Sentiment)) + geom_bar(stat="count") + coord_flip() + theme_bw()
+```
+
+```{r}
+limpiar_texto <- function(texto){
+    # Se convierte todo el texto a minúsculas
+    nuevo_texto <- tolower(texto)
+    # Eliminación de páginas web (palabras que empiezan por "http." seguidas 
+    # de cualquier cosa que no sea un espacio)
+    nuevo_texto <- str_replace_all(nuevo_texto,"http\\S*", "")
+    # Eliminación de signos de puntuación
+    nuevo_texto <- str_replace_all(nuevo_texto,"[[:punct:]]", " ")
+    # Eliminación de números
+    nuevo_texto <- str_replace_all(nuevo_texto,"[[:digit:]]", " ")
+    # Eliminación de espacios en blanco múltiples
+    nuevo_texto <- str_replace_all(nuevo_texto,"[\\s]+", " ")
+    # Tokenización por palabras individuales
+    nuevo_texto <- str_split(nuevo_texto, " ")[[1]]
+    # Eliminación de tokens con una longitud < 2
+    nuevo_texto <- keep(.x = nuevo_texto, .p = function(x){str_length(x) > 1})
+    return(nuevo_texto)
+}
+```
+
+```{r}
+text = "Hola mi nombre es https://www.google.cl. Como. no sé xd6666 ASDA"
+limpiar_texto(text)
+```
+
+```{r}
+tweets <- df %>% mutate(texto_vector = map(.x = OriginalTweet, .f = limpiar_texto))
+```
+
+```{r}
+tweets %>% select(texto_vector) %>% head()
+```
+```{r}
+#Cada valor de la columna texto_vector es un vector con cada palabara del textos
+tweets$texto_vector[1]
+```
+```{r}
+#unnest() nos permite realizar una expansión de los vectores de palabras que creamos, esto aumenta la dimension de filas considerablemente
+tweets_expand <- tweets %>% select(-OriginalTweet) %>% unnest()
+tweets_expand <- tweets_expand %>% rename(word = texto_vector)
+head(tweets_expand) 
+```
+
+```{r}
+#Utilizaremos la librería de stopwords para obtener palabras que no aportar información
+library(stopwords)
+# "word" %in% vector -> true or false
+lista_stopwords <- stopwords("english")
+lista_stopwords <- c(lista_stopwords, "amp","can")
+```
+
+```{r}
+tweets_expand <- tweets_expand %>% filter(!(word %in% lista_stopwords)) 
+
+tweets_expand %>% group_by(Sentiment, word) %>% 
+  count(word) %>% 
+  group_by(Sentiment) %>% 
+  top_n(10,n) %>% 
+  arrange(Sentiment, desc(n)) %>% 
+  ggplot(aes(x=reorder(word,n),y=n,fill=Sentiment)) + 
+  geom_col() + 
+  labs(y = "Frecuencia", x = "Ppalabras mas repetidas") + 
+  coord_flip()
+```
+
+
+
